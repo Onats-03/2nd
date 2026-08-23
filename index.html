@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Our Little Love Garden 💕</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      min-height: 100vh;
+      font-family: "Segoe UI", sans-serif;
+      background: linear-gradient(135deg, #ffd6e7, #fff0f5, #e8d7ff);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      overflow: hidden;
+      color: #6b3650;
+    }
+
+    .container {
+      width: 90%;
+      max-width: 420px;
+      text-align: center;
+      padding: 25px;
+      position: relative;
+      z-index: 2;
+    }
+
+    h1 {
+      font-size: 30px;
+      margin-bottom: 8px;
+    }
+
+    .subtitle {
+      font-size: 14px;
+      margin-bottom: 20px;
+      opacity: 0.8;
+    }
+
+    /* Image */
+    .photo-container {
+      width: 230px;
+      height: 230px;
+      margin: auto;
+      border-radius: 50%;
+      padding: 7px;
+      background: linear-gradient(45deg, #ff8fb8, #c99cff);
+      box-shadow: 0 10px 30px rgba(130, 70, 100, 0.25);
+    }
+
+    .photo {
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      object-fit: cover;
+      background: #fff;
+    }
+
+    .photo-placeholder {
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      background: #fff;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      font-size: 45px;
+    }
+
+    .photo-placeholder span {
+      font-size: 13px;
+      margin-top: 5px;
+      color: #999;
+    }
+
+    /* Flower */
+    .flower {
+      position: relative;
+      width: 90px;
+      height: 90px;
+      margin: 20px auto;
+      animation: sway 3s ease-in-out infinite;
+    }
+
+    .petal {
+      position: absolute;
+      width: 42px;
+      height: 42px;
+      background: #ff8fb8;
+      border-radius: 50%;
+    }
+
+    .petal:nth-child(1) {
+      top: 0;
+      left: 24px;
+    }
+
+    .petal:nth-child(2) {
+      top: 24px;
+      left: 0;
+    }
+
+    .petal:nth-child(3) {
+      top: 24px;
+      right: 0;
+    }
+
+    .petal:nth-child(4) {
+      bottom: 0;
+      left: 24px;
+    }
+
+    .center {
+      position: absolute;
+      width: 30px;
+      height: 30px;
+      background: #ffd34e;
+      border-radius: 50%;
+      top: 30px;
+      left: 30px;
+      z-index: 2;
+    }
+
+    @keyframes sway {
+      0%, 100% {
+        transform: rotate(-4deg);
+      }
+      50% {
+        transform: rotate(4deg);
+      }
+    }
+
+    /* Button */
+    button {
+      border: none;
+      background: #ff6f9f;
+      color: white;
+      padding: 13px 25px;
+      border-radius: 30px;
+      font-size: 15px;
+      cursor: pointer;
+      box-shadow: 0 6px 15px rgba(255, 90, 140, 0.3);
+      transition: 0.3s;
+    }
+
+    button:hover {
+      transform: scale(1.07);
+      background: #ff568d;
+    }
+
+    /* Hidden message */
+    .message {
+      max-height: 0;
+      overflow: hidden;
+      opacity: 0;
+      transition: all 0.7s ease;
+      margin-top: 15px;
+    }
+
+    .message.show {
+      max-height: 250px;
+      opacity: 1;
+    }
+
+    .message-box {
+      background: rgba(255,255,255,0.8);
+      padding: 20px;
+      border-radius: 20px;
+      box-shadow: 0 8px 25px rgba(100,50,80,0.15);
+      line-height: 1.6;
+      font-size: 14px;
+    }
+
+    /* Floating hearts */
+    .heart {
+      position: fixed;
+      bottom: -30px;
+      font-size: 20px;
+      animation: floatUp linear forwards;
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    @keyframes floatUp {
+      0% {
+        transform: translateY(0) scale(1);
+        opacity: 1;
+      }
+
+      100% {
+        transform: translateY(-110vh) scale(1.5);
+        opacity: 0;
+      }
+    }
+
+    .footer {
+      margin-top: 15px;
+      font-size: 12px;
+      opacity: 0.6;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="container">
+
+    <h1>Our Little Love Garden 🌸</h1>
+
+    <p class="subtitle">
+      A little place made just for us 💕
+    </p>
+
+    <!-- IMAGE PLACEHOLDER -->
+    <div class="photo-container">
+
+      <!-- Replace this with your image -->
+      <div class="photo-placeholder">
+        👫
+        <span>Our Photo</span>
+      </div>
+
+      <!--
+      Example if you have a photo:
+
+      <img class="photo" src="our-photo.jpg" alt="Our Photo">
+      -->
+
+    </div>
+
+    <!-- FLOWER -->
+    <div class="flower">
+      <div class="petal"></div>
+      <div class="petal"></div>
+      <div class="petal"></div>
+      <div class="petal"></div>
+      <div class="center"></div>
+    </div>
+
+    <button onclick="openMessage()">
+      💌 Open My Heart
+    </button>
+
+    <!-- MESSAGE -->
+    <div class="message" id="message">
+
+      <div class="message-box">
+
+        <h3>For You ❤️</h3>
+
+        <p>
+          I may not always have the perfect words,
+          but I hope you know how much you mean to me.
+        </p>
+
+        <br>
+
+        <p>
+          Thank you for being part of my life,
+          for the memories, the laughs, and even
+          the little moments we share.
+        </p>
+
+        <br>
+
+        <p>
+          If I could choose again,
+          I'd still choose you. 🌷
+        </p>
+
+        <br>
+
+        <strong>
+          I love you. Always. ❤️
+        </strong>
+
+      </div>
+
+    </div>
+
+    <div class="footer">
+      Made with love for my favorite person 💗
+    </div>
+
+  </div>
+
+  <script>
+
+    function openMessage() {
+
+      const message = document.getElementById("message");
+
+      message.classList.toggle("show");
+
+      createHearts();
+
+    }
+
+    function createHearts() {
+
+      for (let i = 0; i < 15; i++) {
+
+        const heart = document.createElement("div");
+
+        heart.classList.add("heart");
+
+        heart.innerHTML = Math.random() > 0.5 ? "❤️" : "💕";
+
+        heart.style.left = Math.random() * 100 + "vw";
+
+        heart.style.animationDuration =
+          (3 + Math.random() * 3) + "s";
+
+        heart.style.fontSize =
+          (15 + Math.random() * 20) + "px";
+
+        document.body.appendChild(heart);
+
+        setTimeout(() => {
+          heart.remove();
+        }, 6000);
+
+      }
+
+    }
+
+  </script>
+
+</body>
+</html>
