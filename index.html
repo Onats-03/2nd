@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Our Little Love Garden 💕</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      min-height: 100vh;
+      font-family: "Segoe UI", sans-serif;
+      background: linear-gradient(
+        135deg,
+        #ffd6e7,
+        #fff0f5,
+        #e8d7ff
+      );
+
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      overflow-x: hidden;
+      color: #6b3650;
+    }
+
+    .container {
+      width: 90%;
+      max-width: 430px;
+      text-align: center;
+      padding: 30px 20px;
+      position: relative;
+      z-index: 2;
+    }
+
+    h1 {
+      font-size: 30px;
+      margin-bottom: 8px;
+    }
+
+    .subtitle {
+      font-size: 14px;
+      margin-bottom: 25px;
+      opacity: 0.8;
+    }
+
+    /* =========================
+       FLOWER
+    ========================= */
+
+    .flower-container {
+      height: 260px;
+      display: flex;
+      justify-content: center;
+      align-items: flex-end;
+      position: relative;
+      margin-bottom: 20px;
+    }
+
+    .flower {
+      position: relative;
+      width: 150px;
+      height: 180px;
+      animation: sway 3s ease-in-out infinite;
+      transform-origin: bottom center;
+    }
+
+    /* Stem */
+
+    .stem {
+      position: absolute;
+      width: 8px;
+      height: 140px;
+      background: #65a85b;
+      border-radius: 10px;
+      left: 71px;
+      top: 55px;
+      z-index: 1;
+    }
+
+    /* Leaves */
+
+    .leaf {
+      position: absolute;
+      width: 65px;
+      height: 30px;
+      background: #72b866;
+      border-radius: 100% 0 100% 0;
+      z-index: 2;
+    }
+
+    .leaf.left {
+      left: 15px;
+      top: 130px;
+      transform: rotate(-25deg);
+    }
+
+    .leaf.right {
+      right: 10px;
+      top: 105px;
+      transform: rotate(25deg) scaleX(-1);
+    }
+
+    /* Petals */
+
+    .petal {
+      position: absolute;
+      width: 65px;
+      height: 65px;
+      background: linear-gradient(
+        135deg,
+        #ff8fb8,
+        #ffb6ce
+      );
+      border-radius: 50%;
+      box-shadow:
+        0 5px 12px rgba(180, 70, 110, 0.2);
+      z-index: 3;
+    }
+
+    .petal.top {
+      top: 0;
+      left: 42px;
+    }
+
+    .petal.left {
+      top: 35px;
+      left: 5px;
+    }
+
+    .petal.right {
+      top: 35px;
+      right: 5px;
+    }
+
+    .petal.bottom-left {
+      top: 75px;
+      left: 25px;
+    }
+
+    .petal.bottom-right {
+      top: 75px;
+      right: 25px;
+    }
+
+    /* Flower center */
+
+    .flower-center {
+      position: absolute;
+      width: 55px;
+      height: 55px;
+      background: radial-gradient(
+        circle,
+        #ffd85c,
+        #f5ae32
+      );
+
+      border-radius: 50%;
+      top: 45px;
+      left: 48px;
+
+      z-index: 5;
+
+      box-shadow:
+        0 3px 10px rgba(180, 120, 30, 0.3);
+    }
+
+    @keyframes sway {
+      0%, 100% {
+        transform: rotate(-4deg);
+      }
+
+      50% {
+        transform: rotate(4deg);
+      }
+    }
+
+    /* =========================
+       BUTTON
+    ========================= */
+
+    button {
+      border: none;
+
+      background: #ff6f9f;
+      color: white;
+
+      padding: 14px 28px;
+
+      border-radius: 30px;
+
+      font-size: 15px;
+
+      cursor: pointer;
+
+      box-shadow:
+        0 7px 18px rgba(255, 90, 140, 0.3);
+
+      transition: 0.3s;
+    }
+
+    button:hover {
+      transform: scale(1.08);
+      background: #ff568d;
+    }
+
+    button:active {
+      transform: scale(0.95);
+    }
+
+    /* =========================
+       MESSAGE
+    ========================= */
+
+    .message {
+      max-height: 0;
+      overflow: hidden;
+
+      opacity: 0;
+
+      transition:
+        max-height 0.8s ease,
+        opacity 0.8s ease;
+
+      margin-top: 18px;
+    }
+
+    .message.show {
+      max-height: 400px;
+      opacity: 1;
+    }
+
+    .message-box {
+      background: rgba(255, 255, 255, 0.85);
+
+      padding: 22px;
+
+      border-radius: 22px;
+
+      box-shadow:
+        0 10px 30px rgba(100, 50, 80, 0.15);
+
+      line-height: 1.6;
+
+      font-size: 14px;
+    }
+
+    .message-box h3 {
+      font-size: 22px;
+      margin-bottom: 12px;
+    }
+
+    .love-text {
+      color: #ff568d;
+      font-weight: bold;
+      font-size: 18px;
+    }
+
+    /* =========================
+       FLOATING HEARTS
+    ========================= */
+
+    .heart {
+      position: fixed;
+
+      bottom: -30px;
+
+      pointer-events: none;
+
+      z-index: 1;
+
+      animation:
+        floatUp linear forwards;
+    }
+
+    @keyframes floatUp {
+
+      0% {
+        transform:
+          translateY(0)
+          scale(1);
+
+        opacity: 1;
+      }
+
+      100% {
+        transform:
+          translateY(-110vh)
+          scale(1.5);
+
+        opacity: 0;
+      }
+    }
+
+    /* =========================
+       FOOTER
+    ========================= */
+
+    .footer {
+      margin-top: 18px;
+
+      font-size: 12px;
+
+      opacity: 0.6;
+    }
+
+  </style>
+</head>
+
+<body>
+
+  <div class="container">
+
+    <h1>
+      Our Little Love Garden 🌸
+    </h1>
+
+    <p class="subtitle">
+      A little place made just for us 💕
+    </p>
+
+
+    <!-- FLOWER -->
+
+    <div class="flower-container">
+
+      <div class="flower">
+
+        <!-- Stem -->
+        <div class="stem"></div>
+
+        <!-- Leaves -->
+        <div class="leaf left"></div>
+        <div class="leaf right"></div>
+
+        <!-- Petals -->
+        <div class="petal top"></div>
+        <div class="petal left"></div>
+        <div class="petal right"></div>
+        <div class="petal bottom-left"></div>
+        <div class="petal bottom-right"></div>
+
+        <!-- Center -->
+        <div class="flower-center"></div>
+
+      </div>
+
+    </div>
+
+
+    <!-- BUTTON -->
+
+    <button onclick="openMessage()">
+      💌 Open My Heart
+    </button>
+
+
+    <!-- MESSAGE -->
+
+    <div class="message" id="message">
+
+      <div class="message-box">
+
+        <h3>
+          For You ❤️
+        </h3>
+
+        <p>
+          I may not always have the perfect words,
+          but I hope you know how much you mean to me.
+        </p>
+
+        <br>
+
+        <p>
+          Mahal Salamat sa 2 years na pagmamahal at paguunawa mo saken,
+          Salamat sa panahon na kahit di ako lovable mahal mo pa din ako, 
+          pinapakita mo parin saken na mahalaga ako sa'yo, bagama't hindi 
+          man ako pasok sa ibang expectations mo, ngunit sisikapin ko na
+          maipakita ko sa'yo na mahalaga dahil mahal kita, palagi ka mag
+          Iingat huwag masyadong mag overthink isipin mo lagi love na love kita, 
+          Iloveyou mahal ko, Iloveyou baby Grace 😘 Happy second year anniversary of our love, 
+          and looking forward to the another year of our relationship.🥺🩷
+        </p>
+
+        <br>
+
+        <p>
+          If I could choose again,
+          I'd still choose you. 🌷
+        </p>
+
+        <br>
+
+        <p class="love-text">
+          I love you. Always. ❤️
+        </p>
+
+      </div>
+
+    </div>
+
+
+    <div class="footer">
+      Made with love for my favorite person 💗
+    </div>
+
+  </div>
+
+
+  <script>
+
+    function openMessage() {
+
+      const message =
+        document.getElementById("message");
+
+      message.classList.toggle("show");
+
+      createHearts();
+
+    }
+
+
+    function createHearts() {
+
+      for (let i = 0; i < 15; i++) {
+
+        const heart =
+          document.createElement("div");
+
+        heart.classList.add("heart");
+
+        heart.innerHTML =
+          Math.random() > 0.5
+          ? "❤️"
+          : "💕";
+
+        heart.style.left =
+          Math.random() * 100 + "vw";
+
+        heart.style.animationDuration =
+          (3 + Math.random() * 3) + "s";
+
+        heart.style.fontSize =
+          (15 + Math.random() * 20) + "px";
+
+        document.body.appendChild(heart);
+
+        setTimeout(() => {
+
+          heart.remove();
+
+        }, 6000);
+
+      }
+
+    }
+
+  </script>
+
+</body>
+</html>
